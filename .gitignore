@@ -1,5 +1,8 @@
 __py*
 logs/**
+certs/**
+
+api_log
 
 # Emacs
 .\#*

@@ -25,8 +25,10 @@ EXPOSE 5000
 CMD gunicorn -w=$NGINX_WORKERS -t=$NGINX_THREADS --worker-class=gthread \
 	--chdir /mnt/app/ \
 	--worker-tmp-dir /dev/shm \
+	--certfile=./certs/server.crt \
+       	--keyfile=./certs/server.key \
 	-c /mnt/app/config.py \
-	-b 0.0.0.0:5000 \
+	-b 0.0.0.0:443 \
 	main:app
 
 # Run the app - mount the code for easier development
