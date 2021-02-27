@@ -16,7 +16,7 @@ handlers:
     class: logging.handlers.RotatingFileHandler
     level: INFO
     formatter: default
-    filename: ./api_log
+    filename: ./log/api_log
     encoding: utf8 
     maxBytes: 1048576 # 1Mb
     backupCount: 100
