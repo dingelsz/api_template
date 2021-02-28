@@ -1,6 +1,6 @@
 __py*
 logs/**
-certs/**
+*/certs/**
 
 api_log
 
