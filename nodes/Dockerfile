@@ -8,9 +8,8 @@ COPY ./requirments.txt /app/requirments.txt
 RUN pip3 install -r /app/requirments.txt
 
 # Settings
-ENV NGINX_WORKERS 2
+ENV NGINX_WORKERS 1
 ENV NGINX_THREADS 2
-EXPOSE 5000
 
 # gunicorn args:
 # -w               | Number of workers
@@ -25,11 +24,11 @@ EXPOSE 5000
 CMD gunicorn -w=$NGINX_WORKERS -t=$NGINX_THREADS --worker-class=gthread \
 	--chdir /mnt/app/ \
 	--worker-tmp-dir /dev/shm \
-	--certfile=./certs/server.crt \
-       	--keyfile=./certs/server.key \
+	# --certfile=./certs/server.crt \
+       	# --keyfile=./certs/server.key \
 	-c /mnt/app/config.py \
-	-b 0.0.0.0:443 \
+	-b 0.0.0.0:5000 \
 	main:app
 
 # Run the app - mount the code for easier development
-# docker run -p 5000:5000 -v ~/projects/api/:/mnt/app: flask
+# docker run -p 444:444 -v ~/projects/api/:/mnt/app: flask
